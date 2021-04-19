@@ -10,6 +10,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +45,7 @@ public class ItemControllerTest {
 
     @Test
     public void getItems() {
-        List<Item> items = List.of(new Item(), new Item());
+        List<Item> items = new ArrayList<>(Arrays.asList(new Item(), new Item()));
         when(itemRepository.findAll()).thenReturn(items);
 
         ResponseEntity<List<Item>> response = itemController.getItems();
@@ -55,7 +57,7 @@ public class ItemControllerTest {
 
     @Test
     public void getItemsByName() {
-        List<Item> items = List.of(new Item(), new Item(), new Item());
+        List<Item> items = new ArrayList<>(Arrays.asList(new Item(), new Item(), new Item()));
         when(itemRepository.findByName("name")).thenReturn(items);
 
         ResponseEntity<List<Item>> response = itemController.getItemsByName("name");
